@@ -9,7 +9,7 @@ namespace IqansAppsForCTS.Controllers
 {
     public class MeetingRoomManagerController : Controller
     {
-        // GET: MeetingRoomManager
+        // GET: MeetingRoomManager /
         public ActionResult Index()
         {
             return View();
