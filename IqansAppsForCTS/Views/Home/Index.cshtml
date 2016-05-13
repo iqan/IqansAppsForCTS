@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Internal App for CTS-ASOS</h1>
+    <p class="lead">Multiple WebApps to solve some problems and reduce manual work.</p>
+    <p></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Meeting Room Manager</h2>
+        <p>
+            Meeting Room is available or not?
+            Book meeting room for your meeting from your desk only.
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("Index","MeetingRoomManager")">Meeting Room Manager &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>DevOps Forecast Tool</h2>
+        <p>Get your SOW-PO forecast in a few clicks!</p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "ForecastTool")">Forecast Tool &raquo;</a></p>
+    </div>
+</div>
