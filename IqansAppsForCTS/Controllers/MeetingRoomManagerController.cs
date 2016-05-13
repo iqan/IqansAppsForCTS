@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IqansAppsForCTS.Models;
 
 namespace IqansAppsForCTS.Controllers
 {
@@ -15,9 +16,16 @@ namespace IqansAppsForCTS.Controllers
         }
 
         // GET: MeetingRoomManager/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            return View();
+            MeetingRoom mr = new MeetingRoom();
+            mr.RoomNumber = "2C1A";
+            mr.EmpName = "Iqan";
+            mr.StartDate = DateTime.Now;
+            mr.EndDate = DateTime.Now.AddHours(1);
+            mr.Subject = "test";
+
+            return View(mr);
         }
 
         // GET: MeetingRoomManager/Create
