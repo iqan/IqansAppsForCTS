@@ -3,5 +3,26 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Forecast Tool - Index</h2>
+<div class="jumbotron" style="padding-top: 0px; height: 75px">
+    <div style="padding-top: 5px">
+        <h2>Forecast Tool</h2><br/><br/>
+    </div>
+</div>
 
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <table>
+            <tbody>
+            <tr>
+                <td><b>Import File: </b></td>
+                <td><input type="file" name="InputFile"/></td>
+                @*<td>@Html.DropDownListFor()</td>*@
+            </tr>
+            <tr>
+                <td><b>Import File: </b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+}
