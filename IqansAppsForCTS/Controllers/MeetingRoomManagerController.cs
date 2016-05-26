@@ -42,22 +42,30 @@ namespace IqansAppsForCTS.Controllers
 
         // POST: MeetingRoomManager/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(MeetingRoom mrObj)
         {
             try
             {
                 // TODO: Add insert logic here
-                MeetingRoom mr = new MeetingRoom();
-                mr.RoomNumber = "2C1A";
-                mr.EmpName = "Iqan";
-                mr.StartDateTime = DateTime.Now;
-                mr.EndDateTime = DateTime.Now.AddHours(1);
-                mr.Subject = "test";
-                mr.Bookingtime = DateTime.Now;
-                mr.EmpId = 513548;
 
-                var mr1 = DbMethods.Booking(mr);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    MeetingRoom mr = new MeetingRoom();
+                    mr.RoomNumber = mrObj.RoomNumber;
+                    mr.EmpName = (mr.EmpName != string.Empty)? mrObj.EmpName: string.Empty;
+                    mr.StartDateTime = mrObj.StartDateTime;
+                    mr.EndDateTime = mrObj.EndDateTime;
+                    mr.Subject = mrObj.Subject;
+                    mr.Bookingtime = DateTime.Now;
+                    mr.EmpId = mrObj.EmpId;
+                    var mr1 = DbMethods.Booking(mr);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Correct the details.");
+                    return View();
+                }
             }
             catch
             {
