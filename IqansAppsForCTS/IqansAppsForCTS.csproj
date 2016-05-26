@@ -168,6 +168,7 @@
     <Compile Include="Controllers\ForecastToolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MeetingRoomManagerController.cs" />
+    <Compile Include="DBMethods\DbMethods.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +193,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -225,6 +227,8 @@
     <Content Include="Views\MeetingRoomManager\Edit.cshtml" />
     <Content Include="Views\MeetingRoomManager\Index.cshtml" />
     <Content Include="Views\ForecastTool\Index.cshtml" />
+    <Content Include="Views\MeetingRoomManager\test.cshtml" />
+    <Content Include="Views\MeetingRoomManager\test2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

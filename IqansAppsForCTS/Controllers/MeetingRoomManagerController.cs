@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IqansAppsForCTS.Models;
+using IqansAppsForCTS.DBMethods;
 
 namespace IqansAppsForCTS.Controllers
 {
@@ -12,7 +13,9 @@ namespace IqansAppsForCTS.Controllers
         // GET: MeetingRoomManager /
         public ActionResult Index()
         {
-            return View();
+            var list = new List<MeetingRoom>();
+            list = DbMethods.GetMeetingsByDate();
+            return View(list);
         }
 
         // GET: MeetingRoomManager/Details/5
@@ -21,9 +24,12 @@ namespace IqansAppsForCTS.Controllers
             MeetingRoom mr = new MeetingRoom();
             mr.RoomNumber = "2C1A";
             mr.EmpName = "Iqan";
-            mr.StartDate = DateTime.Now;
-            mr.EndDate = DateTime.Now.AddHours(1);
+            mr.StartDateTime = DateTime.Now;
+            mr.EndDateTime = DateTime.Now.AddHours(1);
             mr.Subject = "test";
+            mr.BookingId = "booking1";
+            mr.Bookingtime = DateTime.Now;
+            mr.EmpId = 513548;
 
             return View(mr);
         }
@@ -41,6 +47,7 @@ namespace IqansAppsForCTS.Controllers
             try
             {
                 // TODO: Add insert logic here
+                
 
                 return RedirectToAction("Index");
             }
@@ -51,9 +58,9 @@ namespace IqansAppsForCTS.Controllers
         }
 
         // GET: MeetingRoomManager/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(MeetingRoom obj)
         {
-            return View();
+            return View(obj);
         }
 
         // POST: MeetingRoomManager/Edit/5
@@ -92,6 +99,13 @@ namespace IqansAppsForCTS.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult test2()
+        {
+            var list = new List<MeetingRoom>();
+            list = DbMethods.GetMeetingsByDate();
+            return View(list);
         }
     }
 }

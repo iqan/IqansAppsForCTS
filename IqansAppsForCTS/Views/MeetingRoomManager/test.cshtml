@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>test</title>
+    <link type="text/css" href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="/bower/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-1.10.2.js"></script>
+    @*<script type="text/javascript" src="/bower/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+    <script type="text/javascript" src="/bower/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>*@
+
+    <script type="text/javascript">
+        $('#timepicker1').timepicker();
+    </script>
+
+</head>
+<body>
+<div class="input-group bootstrap-timepicker timepicker">
+    <input id="timepicker1" type="datetime">
+    
+</div>
+<input type="submit" value="Submit"/>
+
+</body>
+</html>
