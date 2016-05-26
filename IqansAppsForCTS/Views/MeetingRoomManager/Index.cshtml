@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Meeting Room Manager - Index</h2>
+<h2>Meeting Room Manager</h2>
 
 <p>
-    <a class="btn btn-default" href="@Url.Action("Create", "MeetingRoomManager")">Book room for your meeting NOW!</a>
+    <a class="btn btn-default" style="background-color: #b0c4de" href="@Url.Action("Create", "MeetingRoomManager")">Book room for your meeting <b>NOW!</b></a>
 </p>
 <table class="table">
     <tr>
@@ -65,11 +65,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Bookingtime)
             </td>
-            <td>
+            @*<td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+            </td>*@
         </tr>
     }
 
