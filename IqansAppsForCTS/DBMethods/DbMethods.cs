@@ -29,7 +29,7 @@ namespace IqansAppsForCTS.DBMethods
                     DbCommand cmd = df.CreateCommand();
 
                     cmd.Connection = cn;
-                    cmd.CommandText = "SELECT * FROM Bookings";
+                    cmd.CommandText = "SELECT * FROM Booking";
                     //cmd.Parameters.Add(new SqlParameter("@u", uname));
                     using (DbDataReader dr = cmd.ExecuteReader())
                     {
@@ -68,7 +68,7 @@ namespace IqansAppsForCTS.DBMethods
             try
             {
                 con.Open();
-                string sql = "INSERT INTO Bookings (RoomNumber,EmpId,EmpName,Subject,StartDateTime,EndDateTime,Bookingtime)" +
+                string sql = "INSERT INTO Booking (RoomNumber,EmpId,EmpName,Subject,StartDateTime,EndDateTime,Bookingtime)" +
                     "VALUES (@RoomNumber,@EmpId,@EmpName,@Subject,@StartDateTime,@EndDateTime,@Bookingtime)";
                
                 cmd = new SqlCommand(sql, con);

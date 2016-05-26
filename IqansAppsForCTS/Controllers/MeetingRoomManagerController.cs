@@ -15,22 +15,13 @@ namespace IqansAppsForCTS.Controllers
         {
             var list = new List<MeetingRoom>();
             list = DbMethods.GetMeetingsByDate();
-            return View(list);
+            var temp = list.OrderBy(l => l.StartDateTime);
+            return View(temp);
         }
 
         // GET: MeetingRoomManager/Details/5
-        public ActionResult Details()
+        public ActionResult Details(MeetingRoom mr)
         {
-            MeetingRoom mr = new MeetingRoom();
-            mr.RoomNumber = "2C1A";
-            mr.EmpName = "Iqan";
-            mr.StartDateTime = DateTime.Now;
-            mr.EndDateTime = DateTime.Now.AddHours(1);
-            mr.Subject = "test";
-            mr.BookingId = "booking1";
-            mr.Bookingtime = DateTime.Now;
-            mr.EmpId = 513548;
-
             return View(mr);
         }
 
@@ -50,15 +41,8 @@ namespace IqansAppsForCTS.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    MeetingRoom mr = new MeetingRoom();
-                    mr.RoomNumber = mrObj.RoomNumber;
-                    mr.EmpName = (mr.EmpName != string.Empty)? mrObj.EmpName: string.Empty;
-                    mr.StartDateTime = mrObj.StartDateTime;
-                    mr.EndDateTime = mrObj.EndDateTime;
-                    mr.Subject = mrObj.Subject;
-                    mr.Bookingtime = DateTime.Now;
-                    mr.EmpId = mrObj.EmpId;
-                    var mr1 = DbMethods.Booking(mr);
+                    mrObj.Bookingtime = DateTime.Now;
+                    var mr1 = DbMethods.Booking(mrObj);
                     return RedirectToAction("Index");
                 }
                 else

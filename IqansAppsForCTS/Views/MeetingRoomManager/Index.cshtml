@@ -66,9 +66,9 @@
                 @Html.DisplayFor(modelItem => item.Bookingtime)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) <br/>
-                @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) <br/>
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", Model) <br/>
+                @Html.ActionLink("Details", "Details", Model) <br/>
+                @Html.ActionLink("Delete", "Delete", Model)
             </td>
         </tr>
     }

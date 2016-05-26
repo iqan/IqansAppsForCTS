@@ -34,8 +34,8 @@
             @Html.LabelFor(model => model.RoomNumber, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.RoomNumber, new List<SelectListItem> { 
-                       new SelectListItem { Value = "2c1" , Text = "2 C1" },
-                       new SelectListItem { Value = "2c2" , Text = "2 C2 (video)" }
+                       new SelectListItem { Value = "2C1" , Text = "2 C1" },
+                       new SelectListItem { Value = "2C2" , Text = "2 C2 (video)" }
                     },
                   new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RoomNumber, "", new {@class = "text-danger"})
