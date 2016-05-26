@@ -47,8 +47,16 @@ namespace IqansAppsForCTS.Controllers
             try
             {
                 // TODO: Add insert logic here
-                
+                MeetingRoom mr = new MeetingRoom();
+                mr.RoomNumber = "2C1A";
+                mr.EmpName = "Iqan";
+                mr.StartDateTime = DateTime.Now;
+                mr.EndDateTime = DateTime.Now.AddHours(1);
+                mr.Subject = "test";
+                mr.Bookingtime = DateTime.Now;
+                mr.EmpId = 513548;
 
+                var mr1 = DbMethods.Booking(mr);
                 return RedirectToAction("Index");
             }
             catch

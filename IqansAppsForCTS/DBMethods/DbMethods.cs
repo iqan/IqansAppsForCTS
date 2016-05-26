@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using IqansAppsForCTS.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace IqansAppsForCTS.DBMethods
 {
@@ -57,75 +58,42 @@ namespace IqansAppsForCTS.DBMethods
             }
         }
 
-        public MeetingRoom Booking(MeetingRoom model)
+        public static MeetingRoom Booking(MeetingRoom model)
         {
-            string cnStr = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            //string cnStr = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            string cnStr = @"Data Source=.\sqlexpress;Initial Catalog=MeetingRoomManager;Integrated Security=True";
             SqlConnection con = new SqlConnection(cnStr);
             SqlCommand cmd = null;
-            SqlCommand cmd2 = null;
-            List<string> ls = new List<string>();
 
             try
             {
                 con.Open();
-                string sql = "INSERT INTO Users (LoginId,Password,FirstName,LastName,Role,Age,Gender,PhoneNumber,Email,Address,ZipCode,City,State,Country)" +
-                    "VALUES (@l,@p,@f,@ln,@r,@a,@g,@c,@e,@ad,@z,@city,@state,@country)";
-                string sql2 = "INSERT INTO Login (LoginId,Password)" +
-                        "VALUES (@l,@p)";
-
+                string sql = "INSERT INTO Bookings (RoomNumber,EmpId,EmpName,Subject,StartDateTime,EndDateTime,Bookingtime)" +
+                    "VALUES (@RoomNumber,@EmpId,@EmpName,@Subject,@StartDateTime,@EndDateTime,@Bookingtime)";
+               
                 cmd = new SqlCommand(sql, con);
-                cmd2 = new SqlCommand(sql2, con);
-                string pre = string.Empty;
-                if (model.Role == "IM")
-                {
-                    pre = "im_";
-                }
-                else
-                {
-                    pre = "us_";
-                }
 
-                string UserName1 = pre + model.FirstName;
-
-                string UserName = CheckDuplicate(UserName1);
-
-                cmd.Parameters.AddWithValue("@l", UserName);
-                cmd.Parameters.AddWithValue("@p", model.Password);
-                cmd.Parameters.AddWithValue("@f", model.FirstName);
-                cmd.Parameters.AddWithValue("@ln", model.LastName);
-                cmd.Parameters.AddWithValue("@r", model.Role);
-                cmd.Parameters.AddWithValue("@a", model.Age);
-                cmd.Parameters.AddWithValue("@g", model.Gender);
-                cmd.Parameters.AddWithValue("@c", model.ContactNumber);
-                cmd.Parameters.AddWithValue("@e", model.Email);
-                cmd.Parameters.AddWithValue("@ad", model.Address);
-                cmd.Parameters.AddWithValue("@z", model.ZipCode);
-                cmd.Parameters.AddWithValue("@city", model.City);
-                cmd.Parameters.AddWithValue("@state", model.State);
-                cmd.Parameters.AddWithValue("@country", model.Country);
-                cmd2.Parameters.AddWithValue("@l", UserName);
-                cmd2.Parameters.AddWithValue("@p", model.Password);
+                //cmd.Parameters.AddWithValue("@BookingId", model.BookingId);
+                cmd.Parameters.AddWithValue("@RoomNumber", model.RoomNumber);
+                cmd.Parameters.AddWithValue("@EmpId", model.EmpId);
+                cmd.Parameters.AddWithValue("@EmpName", model.EmpName);
+                cmd.Parameters.AddWithValue("@Subject", model.Subject);
+                cmd.Parameters.AddWithValue("@StartDateTime", model.StartDateTime);
+                cmd.Parameters.AddWithValue("@EndDateTime", model.EndDateTime);
+                cmd.Parameters.AddWithValue("@Bookingtime", model.Bookingtime);
 
                 using (cmd)
                 {
                     cmd.ExecuteNonQuery();
                 }
                 cmd = null;
-                using (cmd2)
-                {
-                    //cmd2.ExecuteNonQuery();
-                }
-                cmd = null;
+               
                 con.Close();
-                ls.Add(UserName);
-                ls.Add("RegisterSuccess");
-                return ls;
+                return model;
             }
-            catch
+            catch (Exception e)
             {
-                ls.Add("");
-                ls.Add("Register");
-                return ls;
+                throw new Exception("Error occurred. Error: " + e.Message);
             }
         }
     }
