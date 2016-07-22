@@ -16,9 +16,10 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -49,6 +50,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -165,17 +168,33 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookingsController.cs" />
     <Compile Include="Controllers\ForecastToolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MeetingRoomManagerController.cs" />
-    <Compile Include="DBMethods\DbMethods.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Booking.cs">
+      <DependentUpon>MeetingRoomModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MeetingRoom.cs" />
+    <Compile Include="Models\MeetingRoomModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MeetingRoomModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MeetingRoomModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MeetingRoomModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MeetingRoomModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MeetingRoomModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Resources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -190,6 +209,25 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\MeetingRoomModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MeetingRoomModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MeetingRoomModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MeetingRoomModel.edmx</DependentUpon>
+      <LastGenOutput>MeetingRoomModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MeetingRoomModel.edmx.diagram">
+      <DependentUpon>MeetingRoomModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\MeetingRoomModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MeetingRoomModel.edmx</DependentUpon>
+      <LastGenOutput>MeetingRoomModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Properties\PublishProfiles\iqan.pubxml" />
+    <None Include="Properties\PublishProfiles\iqanappsforcts.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -222,14 +260,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\MeetingRoomManager\Create.cshtml" />
-    <Content Include="Views\MeetingRoomManager\Delete.cshtml" />
-    <Content Include="Views\MeetingRoomManager\Details.cshtml" />
-    <Content Include="Views\MeetingRoomManager\Edit.cshtml" />
-    <Content Include="Views\MeetingRoomManager\Index.cshtml" />
     <Content Include="Views\ForecastTool\Index.cshtml" />
-    <Content Include="Views\MeetingRoomManager\test.cshtml" />
-    <Content Include="Views\MeetingRoomManager\test2.cshtml" />
+    <Content Include="Views\Bookings\Create.cshtml" />
+    <Content Include="Views\Bookings\Delete.cshtml" />
+    <Content Include="Views\Bookings\Details.cshtml" />
+    <Content Include="Views\Bookings\Edit.cshtml" />
+    <Content Include="Views\Bookings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -240,6 +276,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
