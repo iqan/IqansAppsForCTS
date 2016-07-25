@@ -176,7 +176,25 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Booking.cs">
-      <DependentUpon>MeetingRoomModel.tt</DependentUpon>
+      <DependentUpon>BookingNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookingNew.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookingNew.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookingNew.cs">
+      <DependentUpon>BookingNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookingNew.Designer.cs">
+      <DependentUpon>BookingNew.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Models\BookingNew2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookingNew.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -225,6 +243,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MeetingRoomModel.edmx</DependentUpon>
       <LastGenOutput>MeetingRoomModel.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\BookingNew.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BookingNew.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BookingNew.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BookingNew.edmx</DependentUpon>
+      <LastGenOutput>BookingNew.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BookingNew.edmx.diagram">
+      <DependentUpon>BookingNew.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\BookingNew.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BookingNew.edmx</DependentUpon>
+      <LastGenOutput>BookingNew2.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\iqan.pubxml" />
     <None Include="Properties\PublishProfiles\iqanappsforcts.pubxml" />

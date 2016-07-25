@@ -12,12 +12,13 @@ namespace IqansAppsForCTS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Booking
+    public partial class BookingNew
     {
         public int BookingId { get; set; }
         public string RoomNumber { get; set; }
-        public System.DateTime StartDateTime { get; set; }
-        public System.DateTime EndDateTime { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public System.TimeSpan StartTime { get; set; }
+        public System.TimeSpan EndTime { get; set; }
         public string EmpName { get; set; }
         public int EmpId { get; set; }
         public System.DateTime BookingTime { get; set; }
