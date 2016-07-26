@@ -13,10 +13,10 @@ namespace IqansAppsForCTS.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MeetingRoomManagerEntities1 : DbContext
+    public partial class MeetingRoomManagerEntities : DbContext
     {
-        public MeetingRoomManagerEntities1()
-            : base("name=MeetingRoomManagerEntities1")
+        public MeetingRoomManagerEntities()
+            : base("name=MeetingRoomManagerEntities")
         {
         }
     
@@ -25,7 +25,6 @@ namespace IqansAppsForCTS.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Booking> Bookings { get; set; }
         public virtual DbSet<BookingNew> BookingNews { get; set; }
     }
 }

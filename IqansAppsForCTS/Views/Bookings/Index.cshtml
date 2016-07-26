@@ -1,24 +1,39 @@
-﻿@model IEnumerable<IqansAppsForCTS.Models.Booking>
+﻿@model IEnumerable<IqansAppsForCTS.Models.BookingNew>
 
 @{
     ViewBag.Title = "Index";
 }
 
+@if (TempData["DeleteError"] != null)
+{
+    <script>
+        alert("You are not allowed to delete this booking.");
+    </script>
+    {
+        TempData["DeleteError"] = null;
+    }
+}
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Book Now!", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.BookingId)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.RoomNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StartDateTime)
+            @Html.DisplayNameFor(model => model.StartDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EndDateTime)
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EmpName)
@@ -38,13 +53,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.BookingId)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.RoomNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StartDateTime)
+            @Html.DisplayFor(modelItem => item.StartDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EndDateTime)
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EmpName)
@@ -59,9 +80,9 @@
             @Html.DisplayFor(modelItem => item.Subject)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookingId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookingId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookingId })
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.BookingId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookingId }) |*@
+            @Html.ActionLink("Delete", "Delete", new {id = item.BookingId})
         </td>
     </tr>
 }

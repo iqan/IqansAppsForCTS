@@ -1,4 +1,4 @@
-﻿@model IqansAppsForCTS.Models.Booking
+﻿@model IqansAppsForCTS.Models.BookingNew
 
 @{
     ViewBag.Title = "Delete";
@@ -20,19 +20,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StartDateTime)
+            @Html.DisplayNameFor(model => model.StartDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartDateTime)
+            @Html.DisplayFor(model => model.StartDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EndDateTime)
+            @Html.DisplayNameFor(model => model.StartTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EndDateTime)
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
         </dd>
 
         <dt>

@@ -175,9 +175,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Booking.cs">
-      <DependentUpon>BookingNew.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\BookingNew.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -187,32 +184,17 @@
       <DependentUpon>BookingNew.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BookingNew.Designer.cs">
-      <DependentUpon>BookingNew.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>BookingNew.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\BookingNew2.cs">
+    <Compile Include="Models\BookingNew1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BookingNew.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MeetingRoomModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MeetingRoomModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MeetingRoomModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MeetingRoomModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MeetingRoomModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MeetingRoomModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Resources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -227,23 +209,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\MeetingRoomModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MeetingRoomModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\MeetingRoomModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MeetingRoomModel.edmx</DependentUpon>
-      <LastGenOutput>MeetingRoomModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\MeetingRoomModel.edmx.diagram">
-      <DependentUpon>MeetingRoomModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\MeetingRoomModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MeetingRoomModel.edmx</DependentUpon>
-      <LastGenOutput>MeetingRoomModel.cs</LastGenOutput>
-    </Content>
     <EntityDeploy Include="Models\BookingNew.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BookingNew.Designer.cs</LastGenOutput>
@@ -259,8 +224,9 @@
     <Content Include="Models\BookingNew.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BookingNew.edmx</DependentUpon>
-      <LastGenOutput>BookingNew2.cs</LastGenOutput>
+      <LastGenOutput>BookingNew1.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\appforcts-asos.pubxml" />
     <None Include="Properties\PublishProfiles\iqan.pubxml" />
     <None Include="Properties\PublishProfiles\iqanappsforcts.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

@@ -11,6 +11,7 @@ using System.Net.Mail;
 
 namespace IqansAppsForCTS.Controllers
 {
+    [Authorize]
     public class BookingsController : Controller
     {
         private MeetingRoomManagerEntities db = new MeetingRoomManagerEntities();
@@ -18,9 +19,10 @@ namespace IqansAppsForCTS.Controllers
         // GET: Bookings
         public ActionResult Index()
         {
-            var temp = db.Bookings.ToList();
-            List<Booking> SortedList = temp.OrderBy(o => o.StartDateTime).ToList();
-            return View(SortedList);
+            Session["EmpId"] = User.Identity.Name;
+            var temp = db.BookingNews.ToList();
+            List<BookingNew> sortedList = temp.OrderBy(o => o.StartDate).ThenBy(o => o.StartTime).ToList();
+            return View(sortedList);
         }
 
         // GET: Bookings/Details/5
@@ -30,7 +32,7 @@ namespace IqansAppsForCTS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Booking booking = db.Bookings.Find(id);
+            BookingNew booking = db.BookingNews.Find(id);
             if (booking == null)
             {
                 return HttpNotFound();
@@ -49,28 +51,16 @@ namespace IqansAppsForCTS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BookingId,RoomNumber,StartDateTime,EndDateTime,EmpName,EmpId,BookingTime,Subject")] Booking booking)
+        public ActionResult Create(BookingNew booking, TimeSpan startDateTime, TimeSpan endDateTime)
         {
             if (ModelState.IsValid)
             {
+                booking.EmpId = Session["EmpId"].ToString();
                 booking.BookingTime = DateTime.Now;
-                db.Bookings.Add(booking);
+                booking.StartTime = startDateTime;
+                booking.EndTime = endDateTime;
+                db.BookingNews.Add(booking);
                 db.SaveChanges();
-                //MailMessage mail = new MailMessage();
-                //mail.To.Add(booking.EmpName);
-                //mail.From = new MailAddress("iqan.shaikh@gmail.com");
-                //mail.Subject = "Booking Confirmation";
-                //string Body = "Booking Confirmed: From " + booking.StartDateTime + " To " + booking.EndDateTime + " For : " + booking.Subject + " By " + booking.EmpName;
-                //mail.Body = Body;
-                //mail.IsBodyHtml = true;
-                //SmtpClient smtp = new SmtpClient();
-                //smtp.Host = "smtp.gmail.com";
-                //smtp.Port = 587;
-                //smtp.UseDefaultCredentials = false;
-                //smtp.Credentials = new System.Net.NetworkCredential
-                //("iqan.shaikh@gmail.com", "**");// Enter seders User name and password
-                //smtp.EnableSsl = true;
-                //smtp.Send(mail);
                 return RedirectToAction("Index");
             }
 
@@ -84,7 +74,7 @@ namespace IqansAppsForCTS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Booking booking = db.Bookings.Find(id);
+            BookingNew booking = db.BookingNews.Find(id);
             if (booking == null)
             {
                 return HttpNotFound();
@@ -97,7 +87,7 @@ namespace IqansAppsForCTS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BookingId,RoomNumber,StartDateTime,EndDateTime,EmpName,EmpId,BookingTime,Subject")] Booking booking)
+        public ActionResult Edit(BookingNew booking)
         {
             if (ModelState.IsValid)
             {
@@ -115,10 +105,16 @@ namespace IqansAppsForCTS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Booking booking = db.Bookings.Find(id);
+            BookingNew booking = db.BookingNews.Find(id);
             if (booking == null)
             {
                 return HttpNotFound();
+            }
+            if (booking.EmpId != Session["EmpId"].ToString())
+            {
+                TempData["DeleteError"] = "You are not allowed to delete this.";
+                TempData.Keep();
+                return RedirectToAction("Index", booking);
             }
             return View(booking);
         }
@@ -128,8 +124,8 @@ namespace IqansAppsForCTS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Booking booking = db.Bookings.Find(id);
-            db.Bookings.Remove(booking);
+            BookingNew booking = db.BookingNews.Find(id);
+            db.BookingNews.Remove(booking);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
