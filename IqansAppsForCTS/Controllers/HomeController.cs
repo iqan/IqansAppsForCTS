@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace IqansAppsForCTS.Controllers
@@ -10,6 +12,7 @@ namespace IqansAppsForCTS.Controllers
     {
         public ActionResult Index()
         {
+            AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
             return View();
         }
 

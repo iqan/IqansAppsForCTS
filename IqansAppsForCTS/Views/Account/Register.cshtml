@@ -3,6 +3,16 @@
     ViewBag.Title = "Register";
 }
 
+@if (TempData["RegError"] != null)
+{
+    <script>
+        alert("Error: @TempData["RegError"]");
+    </script>
+    {
+        TempData["RegError"]=null;
+    }
+}
+
 <h2>@ViewBag.Title.</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -24,9 +34,15 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ConfirmPassword, new {@class = "col-md-2 control-label"})
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "form-control"})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Secret Key", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input type="password" class="form-control" id="SecretKey" name="SecretKey" />
         </div>
     </div>
     <div class="form-group">

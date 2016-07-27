@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Filters;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IqansAppsForCTS.Models;
+using Microsoft.Owin.Host.SystemWeb;
+using Newtonsoft.Json;
 
 namespace IqansAppsForCTS.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
@@ -103,13 +106,20 @@ namespace IqansAppsForCTS.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, string secretKey)
         {
             if (ModelState.IsValid)
             {
+                if (secretKey != "iqan")
+                {
+                    TempData["RegError"] = "Wrong secret key!";
+                    return View(model);
+                }
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                
+                if (result.Succeeded )
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
@@ -125,6 +135,7 @@ namespace IqansAppsForCTS.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            
             return View(model);
         }
 
@@ -149,9 +160,11 @@ namespace IqansAppsForCTS.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult LogOff(string returnUrl)
         {
             AuthenticationManager.SignOut();
+            //Session.Abandon();
+            //return Redirect("https://login.windows.net/"+ "common" +"/oauth2/logout?post_logout_redirect_uri=https://appforcts-asos.azurewebsites.net/");
             return RedirectToAction("Index", "Home");
         }
 

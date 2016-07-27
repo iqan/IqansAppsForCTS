@@ -7,7 +7,7 @@
 @if (TempData["DeleteError"] != null)
 {
     <script>
-        alert("You are not allowed to delete this booking.");
+        alert("@TempData["DeleteError"]");
     </script>
     {
         TempData["DeleteError"] = null;
@@ -26,6 +26,7 @@
         <th>
             @Html.DisplayNameFor(model => model.RoomNumber)
         </th>
+        <th>VC</th>
         <th>
             @Html.DisplayNameFor(model => model.StartDate)
         </th>
@@ -57,6 +58,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RoomNumber)
+        </td>
+        <td>
+            @if (item.RoomNumber.Contains("2C1"))
+            {
+                <img src="~/Content/Images/tv.png" width="16" height="16" />
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartDate)

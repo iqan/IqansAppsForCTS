@@ -28,7 +28,7 @@ namespace IqansAppsForCTS.Models
         public System.TimeSpan StartTime { get; set; }
         [DisplayName("End Time")]
         public System.TimeSpan EndTime { get; set; }
-        [DisplayName("Name")]
+        [DisplayName("Team Name")]
         public string EmpName { get; set; }
         [DisplayName("Email Id")]
         public string EmpId { get; set; }

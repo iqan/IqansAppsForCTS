@@ -6,7 +6,7 @@
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         var now = new Date();
 
         var day = ("0" + now.getDate()).slice(-2);
@@ -21,6 +21,16 @@
     });
 </script>
 
+@if (TempData["Error"] != null)
+{
+    <script>
+        alert("Booking timings are clashing with a meeting.@TempData["Error"]");
+    </script>
+    {
+        TempData["Error"] = null;
+    }
+}
+
 <h2>Book Now!</h2>
 
 @using (Html.BeginForm())
@@ -31,7 +41,6 @@
         <h4>Booking</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.EmpId, htmlAttributes: new { @class = "control-label col-md-2" })
